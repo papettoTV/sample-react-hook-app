@@ -1,8 +1,16 @@
-import {useContext} from "react"
+import {useContext, useEffect} from "react"
 import AppDispatch from "./context.js"
 
 export default function GrandChildComponent() {
   const context = useContext(AppDispatch);
+  useEffect(() => {
+    console.log("GrandChildComponent useEffect");
+    // Update the document title using the browser API
+    document.title = `You clicked ${context.state.count} times`;
+    return function cleanup() {
+      console.log("cleanup");
+    };
+  });
   return (
     <>
       <h1>GrandChildComponent</h1>
