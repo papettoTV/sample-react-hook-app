@@ -1,26 +1,14 @@
-import {useReducer} from "react"
-
-const initialState = {count: 0};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'increment':
-      return {count: state.count + 1};
-    case 'decrement':
-      return {count: state.count - 1};
-    default:
-      throw new Error();
-  }
-}
+import {useContext} from "react"
+import AppDispatch from "./context.js"
 
 export default function GrandChildComponent() {
-  const [state, dispatch] = useReducer(reducer, {count:0});
+  const context = useContext(AppDispatch);
   return (
     <>
       <h1>GrandChildComponent</h1>
-      <p>Count: {state.count}</p>
-      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
-      <button onClick={() => dispatch({type: 'increment'})}>+</button>
+      <p>Count: {context.state.count}</p>
+      <button onClick={() => context.dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => context.dispatch({type: 'increment'})}>+</button>
     </>
   );
 }
