@@ -1,3 +1,11 @@
+import {useState} from "react"
+
 export default function GrandChildComponent() {
-  return <h1>GrandChildComponent</h1>
+  const [count, setCount] = useState(0);
+  return (
+    <>
+    <h1>GrandChildComponent</h1>
+    <p>count : {count}</p>
+    </>
+  );
 }
