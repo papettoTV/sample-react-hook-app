@@ -1,12 +1,13 @@
 import {useContext, useEffect} from "react"
-import AppDispatch from "./context.js"
+import {ContextAppDispatch,ContextState} from "./context.js"
 
 export default function GrandChildComponent() {
-  const context = useContext(AppDispatch);
+  const dispatch = useContext(ContextAppDispatch);
+  const state = useContext(ContextState);
   useEffect(() => {
     console.log("GrandChildComponent useEffect");
     // Update the document title using the browser API
-    document.title = `You clicked ${context.state.count} times`;
+    document.title = `You clicked ${state.count} times`;
     return function cleanup() {
       console.log("cleanup");
     };
@@ -14,9 +15,9 @@ export default function GrandChildComponent() {
   return (
     <>
       <h1>GrandChildComponent</h1>
-      <p>Count: {context.state.count}</p>
-      <button onClick={() => context.dispatch({type: 'decrement'})}>-</button>
-      <button onClick={() => context.dispatch({type: 'increment'})}>+</button>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }
