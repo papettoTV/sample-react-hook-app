@@ -1,5 +1,6 @@
 import {useContext, useEffect} from "react"
 import {ContextAppDispatch,ContextState} from "./context.js"
+import {increment,decrement} from "./actions.js"
 
 export default function GrandChildComponent() {
   const dispatch = useContext(ContextAppDispatch);
@@ -16,8 +17,8 @@ export default function GrandChildComponent() {
     <>
       <h1>GrandChildComponent</h1>
       <p>Count: {state.count}</p>
-      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
-      <button onClick={() => dispatch({type: 'increment'})}>+</button>
+      <button onClick={() => dispatch(decrement())}>-</button>
+      <button onClick={() => dispatch(increment())}>+</button>
     </>
   );
 }
